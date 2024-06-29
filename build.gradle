@@ -1,6 +1,7 @@
 plugins {
     id 'org.springframework.boot' version '3.3.0'
     id 'java'
+    id "com.github.davidmc24.gradle.plugin.avro" version "1.9.1"
 }
 
 group = "edu.wgu"
@@ -8,12 +9,21 @@ version = "0.1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://packages.confluent.io/maven"
+    }
+    maven {
+        url "https://mvnrepository.com/artifact/org.apache.avro/avro-maven-plugin"
+    }
 }
 
 dependencies {
-    implementation(platform('org.springframework.boot:spring-boot-dependencies:3.3.0'))
+    implementation(platform('org.springframework.boot:spring-boot-dependencies:3.3.1'))
     implementation('org.springframework.boot:spring-boot-starter')
     implementation('org.springframework.kafka:spring-kafka:3.2.0')
+    implementation('io.confluent:kafka-avro-serializer:7.6.0')
+    implementation('org.apache.avro:avro:1.11.3')
+//    implementation 'io.confluent:kafka-schema-registry-client:5.3.0'
 
     testImplementation(platform('org.junit:junit-bom:5.10.2'))
     testImplementation('org.junit.jupiter:junit-jupiter')

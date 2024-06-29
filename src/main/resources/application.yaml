@@ -8,12 +8,16 @@ spring:
         jaas:
           config: org.apache.kafka.common.security.plain.PlainLoginModule required username='F3VM372UAG5Q3XQK' password='cORff4D8DuqsQPFzhl7yzXfgivwug1MRVA5ETJf3R+lccvQDbAEPtPK41WbZRQVw';
         mechanism: PLAIN
+      # CCloud Schema Registry Connection parameter
+      schema.registry.url: https://psrc-w7m1mm.us-west-2.aws.confluent.cloud
+      basic.auth.credentials.source: USER_INFO
+      schema.registry.basic.auth.user.info: CK7VVBYATGSIIZTS:ilCwlBZLfWK4qAFSiwYvoT2NZZE4xP86tjjQjq6wG+kYl+uffyABYXinwGn/ZTuK
 
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
     consumer:
       group-id: group_id
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
