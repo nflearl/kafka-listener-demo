@@ -1,0 +1,23 @@
+{
+  "doc": "Sample schema to get started.",
+  "fields": [
+    {
+      "doc": "Title",
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "doc": "ISBN identification",
+      "name": "isbn",
+      "type": "string"
+    },
+    {
+      "doc": "Number of books in stock",
+      "name": "count",
+      "type": "int"
+    }
+  ],
+  "name": "Book",
+  "namespace": "edu.wgu",
+  "type": "record"
+}

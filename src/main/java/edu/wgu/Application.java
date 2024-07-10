@@ -7,9 +7,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.kafka.listener.adapter.RecordFilterStrategy;
 
 @SpringBootApplication
 public class Application {
+
+    static boolean filterMe;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -28,5 +31,16 @@ public class Application {
             }
 
         };
+    }
+
+    @Bean(name = "OurEvents")
+    public RecordFilterStrategy<String, Object> recordFilterStrategy() {
+        return consumerRecord -> toggleFilter();
+    }
+
+    private static boolean toggleFilter() {
+        boolean retVal = filterMe;
+        filterMe =! filterMe;
+        return retVal;
     }
 }
