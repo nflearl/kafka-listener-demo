@@ -2,6 +2,7 @@ package edu.wgu;
 
 import java.util.Arrays;
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,8 +12,6 @@ import org.springframework.kafka.listener.adapter.RecordFilterStrategy;
 
 @SpringBootApplication
 public class Application {
-
-    static boolean filterMe;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -35,12 +34,17 @@ public class Application {
 
     @Bean(name = "OurEvents")
     public RecordFilterStrategy<String, Object> recordFilterStrategy() {
-        return consumerRecord -> toggleFilter();
+        return new RecordFilterStrategy<String, Object>() {
+            @Override
+            public boolean filter(ConsumerRecord<String, Object> consumerRecord) {
+                return !processMe(consumerRecord);
+            }
+
+            private static boolean processMe(ConsumerRecord<String, Object> consumerRecord) {
+                return consumerRecord.value() instanceof ZZEarl ||
+                        consumerRecord.value() instanceof Book;
+            }
+        };
     }
 
-    private static boolean toggleFilter() {
-        boolean retVal = filterMe;
-        filterMe =! filterMe;
-        return retVal;
-    }
 }
