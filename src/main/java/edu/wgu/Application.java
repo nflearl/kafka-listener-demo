@@ -34,7 +34,7 @@ public class Application {
 
     @Bean(name = "OurEvents")
     public RecordFilterStrategy<String, Object> recordFilterStrategy() {
-        return new RecordFilterStrategy<String, Object>() {
+        return new RecordFilterStrategy<>() {
             @Override
             public boolean filter(ConsumerRecord<String, Object> consumerRecord) {
                 return !processMe(consumerRecord);
