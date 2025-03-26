@@ -1,12 +1,12 @@
 spring:
   kafka:
-    bootstrap-servers: pkc-doyn7z.us-west-2.aws.confluent.cloud:9092
+    bootstrap-servers: pkc-kngm02.us-west-2.aws.confluent.cloud:9092
     properties:
       security:
         protocol: SASL_SSL
       sasl:
         jaas:
-          config: org.apache.kafka.common.security.plain.PlainLoginModule required username='F3VM372UAG5Q3XQK' password='cORff4D8DuqsQPFzhl7yzXfgivwug1MRVA5ETJf3R+lccvQDbAEPtPK41WbZRQVw';
+          config: org.apache.kafka.common.security.plain.PlainLoginModule required username='OOH3G2Q45VSR3FYB' password='95qpLfL5w+h5wFH0e49E2UnwMCrA4Z6KhW+DXqPSGUTWzBDA+sGnaxSSRgSnq/Y3';
         mechanism: PLAIN
       # CCloud Schema Registry Connection parameter
       schema.registry.url: https://psrc-w7m1mm.us-west-2.aws.confluent.cloud
